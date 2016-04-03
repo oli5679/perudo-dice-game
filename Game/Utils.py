@@ -3,7 +3,15 @@ __author__ = "Felix Hubert"
 import random
 
 
-def verify_bid(previous, current):
+def verify_bet(previous, current):
+    """
+    Verify if the current bet is 'better' than the previous bet.
+    To be 'better', refer to the rules of Perudo (higher value dice or higher quantity)
+    Will return true if it is and false if not
+    :param previous: quantity-value array
+    :param current: quantity-value array
+    :return: boolean
+    """
     previous_quantity = int(previous[0])
     previous_value = int(previous[1])
     current_quantity = int(current[0])
@@ -25,6 +33,19 @@ def verify_bid(previous, current):
 
 
 def AI_bet(previous, dice_number):
+    """
+    Will simulate an AI betting based on the previous bet to beat and
+    the number of dice available. Will calculate the odds of having a certain
+    quantity of dice, and will take his bet considering that. If the odds are not in
+    its favor, the AI bet will call a 'bullshit' response.
+
+    To simulate a true player behavior, we should calculate the odds based with
+    the die the AI possess. For example, if an AI have 6 dice of the same value,
+    the odds are in his favor to go with a higher quantity than 6 on a 36 dice round.
+    :param previous: quantity-value array
+    :param dice_number: Number of total dice currently used in the game
+    :return: bet
+    """
     dice_probability = float(dice_number) / 6
 
     previous_quantity = previous[0]
@@ -51,8 +72,14 @@ def AI_bet(previous, dice_number):
 
 
 def up_value(previous_value):
+    """
+    Will return a random value higher than the previous value. Used by the AI
+    to sometimes up the value of the dice and not the quantity.
+    :param previous_value: quantity-value array
+    :return: choice_array
+    """
     choices = [1]
     for i in range(1, 7):
-        if i > range:
+        if i > previous_value:
             choices.append(i)
         return random.choice(choices)
