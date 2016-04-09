@@ -1,6 +1,6 @@
 __author__ = 'Felix Hubert'
 
-from Game import Player
+from game import Player
 
 import unittest
 
