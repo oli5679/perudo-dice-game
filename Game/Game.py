@@ -37,7 +37,7 @@ class Game:
         """
         for i in range(1, int(self.player_number) + 1):
             name = "Player" + str(i)
-            player = player.Player(name, start_dice_number)
+            player = Player.Player(name, start_dice_number)
             self.player_list.append(player)
 
     def prepare_round(self):
